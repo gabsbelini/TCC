@@ -89,7 +89,7 @@ def recebeDataIHC(event):
     print(x)
 botao.bind('<Button-1>', recebeDataIHC)
 '''
-variavel = "comer coco"
+variavel = "hhuhuhui"
 driver = init_driver()
 lookup(driver, "inteligencia artificial\n")
 time.sleep(5)
