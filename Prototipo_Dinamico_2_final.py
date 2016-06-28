@@ -1,6 +1,7 @@
 from Tkinter import *
 
-
+atual = 0
+ultimo = 0
 listaposLinhas = [0,0,0,0,0]
 listaFlags = [False, False, False, False, False]
 posLinhac0 = 0
@@ -45,38 +46,44 @@ def abreArquivo():
 lista = abreArquivo()
 root = Tk()
 
-
+linha = -1
 while lista:
     if lista[0].startswith('http'):
-        if max(listaposLinhas) == 0:
-            posLinhac0 = 0
-        else:
-            posLinhac0 = max(listaposLinhas)
-        variaveisCheckbox = adicionaTopLayer(lista[0], variaveisCheckbox, posLinhac0, root)
-        listaposLinhas = [max(listaposLinhas) for x in listaposLinhas]
-        listaFlags = [False for x in listaFlags]
-        print(listaposLinhas)
-        print('entrou toplayer')
+        linha += 1
+        variaveisCheckbox = adicionaTopLayer(lista[0], variaveisCheckbox, linha, root)
+        ultimo = ''
     elif lista[0].startswith('----ht'):
-        variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, listaposLinhas[1], 1, root)
-        listaposLinhas[1] += 1
-        listaFlags[1] = True
+        atual = '----ht'
+        if len(atual) > len(ultimo):
+            variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, linha, 1, root)
+        else:
+            linha += 1
+            variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, linha, 1, root)
+        ultimo = '----ht'
     elif lista[0].startswith('--------ht'):
-        if listaposLinhas[3] == True or listaposLinhas[4] == True:
-            listaposLinhas[3] = max(listaposLinhas[3], listaposLinhas[4], listaposLinhas[2])
-        variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, listaposLinhas[2], 2, root)
-        listaposLinhas[2] += 1
-        listaFlags[2] = True
+        atual = '--------ht'
+        if len(atual) > len(ultimo):
+            variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, linha, 2, root)
+        else:
+            linha += 1
+            variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, linha, 2, root)
+        ultimo = '--------ht'
     elif lista[0].startswith('------------ht'):
-        if listaFlags[4] == True:
-            listaposLinhas[3] = max(listaposLinhas[4], listaposLinhas[3])
-        variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, listaposLinhas[3], 3, root)
-        listaposLinhas[3] += 1
-        listaFlags[3] = True
+        atual = '------------ht'
+        if len(atual) > len(ultimo):
+            variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, linha, 3, root)
+        else:
+            linha += 1
+            variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, linha, 3, root)
+        ultimo = '------------ht'
     elif lista[0].startswith('----------------ht'):
-        variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, listaposLinhas[4], 4, root)
-        listaposLinhas[4] += 1
-        listaFlags[4] = True
+        atual = '----------------ht'
+        if len(atual) > len(ultimo):
+            variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, linha, 4, root)
+        else:
+            linha += 1
+            variaveisCheckbox = adicionaOutros(lista[0], variaveisCheckbox, linha, 4, root)
+        ultimo = '----------------ht'
     lista.pop(0)
 
 botao = Button(root, text="botao")
