@@ -25,7 +25,7 @@ listaposLinhas = [0,0,0,0,0]
 listaFlags = [False, False, False, False, False]
 posLinhac0 = 0
 variaveisCheckbox = []
-lista = []
+
 
 
 def init_driver():
@@ -82,13 +82,31 @@ def adicionaTopLayer(iri, variaveisCheckbox, posLinhac0, root):
     print('linha top', posLinhac0)
     return variaveisCheckbox
 
-def abreArquivo():
-    arquivo = open('ontoTreeFinal.txt', 'r')
+def abreArquivo(arqtxt):
+    arquivo = open(arqtxt, 'r')
     lista = [linha for linha in arquivo]
     print('tamanho lista', len(lista))
+    lista = lista[15:]
     return lista
-lista = abreArquivo()
+
+
+def getFileName(event):
+    global filename
+    filename = entry1.get()
+    root1.destroy()
+#filename = '1'
+root1 = Tk()
+botaook = Label(root1, text='OK', bg='green', fg='white')
+botaook.bind('<Button-1>', getFileName)
+botaook.grid(row=2, column=1)
+entry1 = Entry(root1)
+label1 = Label(root1, text='Nome do arquivo')
+entry1.grid(row=1, column=1)
+label1.grid(row=0, sticky=E)
+root1.mainloop()
+lista = abreArquivo(filename)
 root = Tk()
+
 
 linha = -1
 while lista:
