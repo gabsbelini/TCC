@@ -1,18 +1,6 @@
 #-*- coding: utf-8 -*-
 from Tkinter import *
 import time
-''' arquitetura, fluxograma visual mostrando interação entre o programas,interface com usser
-, ontologia, internet, usuário, busca na internet, pode fazer em astah
-falar sobre como criei a ontologia, o programa, de onde tirei a ontologia, SS mostrando protege,
- partes da ontologia, SS do XML da ontologia, talvez ate explicar como gerar o XML da ontologia, qual formato salvar etc...
- explicar o processo de extração da ontologia e geração do arquivo para montar a interface, falar sobre interface grafica
- explicar como usar a interface, como ela esta organizada identação etc... Falar que o usuario pode selecionar...
- explicar um pouco sobre selenium, mostrar um exemplo de uma busca, explicar que o selenium é tipo um robo,
- como se fosse um user interagindo com o browser dizezr que o google nao permite urlreq direta e bloqueia.
-
- A conclusao eu explico como eu atingi cada obj especifico, e ai com eles como eu atingi o obj geral do trab, e apos
- isso explicar possibilidades futuras, fazer ontologia de outra area e utilizar no sistema
-'''
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -148,7 +136,7 @@ while lista:
         ultimo = '----------------ht'
     lista.pop(0)
 
-botao = Button(root, text="botao")
+botao = Button(root, text="Buscar")
 botao.grid(row=0, column=6)
 botao.bind('<Button-1>', printaIHC)
 
